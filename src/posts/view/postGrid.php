@@ -3,7 +3,7 @@
     <!-- First test article -->
     <article class="column-post">
         <div>
-            <img class="grid-post-cover" src="/../src/posts/media/image_7.png" alt="">
+            <img class="grid-post-cover" src="/../src/posts/media/image_5.png" alt="">
         </div>
         <div>
             <h2 class="post-title">long established</h2>
@@ -35,7 +35,7 @@
     <!-- Tirth test -->
     <article class="column-post">
         <div>
-            <img class="grid-post-cover" src="/../src/posts/media/image_7.png" alt="">
+            <img class="grid-post-cover" src="/../src/posts/media/image_6.png" alt="">
         </div>
         <div>
             <h2 class="post-title">long established</h2>
