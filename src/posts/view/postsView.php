@@ -10,7 +10,7 @@
     <?php require_once(__DIR__ . "./featuredPost.php"); ?>
 
     <!-- Read more on blog page btn -->
-    <a href="#" class="read-more-on-blog-btn">
+    <a href="/src/posts/single.php" class="read-more-on-blog-btn">
         <div>See more</div>
         <img src="/../../../assets/images/arrow-down-circle-fill-1.svg" alt="">
     </a>
