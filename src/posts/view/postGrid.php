@@ -1,50 +1,40 @@
+<?php
+require_once(__DIR__ . "/../../../config/database.php");
+
+// Get featured post
+$query = $pdo->prepare('SELECT * FROM posts, author WHERE posts.author_id = author.id ORDER BY RAND() DESC LIMIT 3');
+$query->execute();
+$rows = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
 <!-- Grid Post Section -->
 <section class="post-grid">
-    <!-- First test article -->
-    <article class="column-post">
-        <div>
-            <img class="grid-post-cover" src="/../src/posts/media/image_5.png" alt="">
-        </div>
-        <div>
-            <h2 class="post-title">long established</h2>
-            <h6 class="post-short">It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that....</h6>
-            <div class="post-meta-data">
-                <div class="post-meta-date">May 20th 2020</div>
-                <div><a class="post-btn-read-more-link" href="#">Read more</a></div>
-            </div>
-        </div>
-    </article>
+    <!--Article container -->
+    <?php foreach ($rows as $row) {
+        // Format date
+        $created_at = new DateTime($row['created_at'], new DateTimeZone('Europe/Paris'));
+        ?>
 
-    <!-- Second test article -->
-    <article class="column-post">
-        <div>
-            <img class="grid-post-cover" src="/../src/posts/media/image_7.png" alt="">
-        </div>
-        <div>
-            <h2 class="post-title">long established</h2>
-            <h6 class="post-short">It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that....</h6>
-            <div class="post-meta-data">
-                <div class="post-meta-date">May 20th 2020</div>
-                <div><a class="post-btn-read-more-link" href="#">Read more</a></div>
+        <article class="column-post">
+            <div>
+                <img class="grid-post-cover" src="<?= $row['cover_url'] ?>" alt="">
             </div>
-        </div>
-    </article>
-
-    <!-- Tirth test -->
-    <article class="column-post">
-        <div>
-            <img class="grid-post-cover" src="/../src/posts/media/image_6.png" alt="">
-        </div>
-        <div>
-            <h2 class="post-title">long established</h2>
-            <h6 class="post-short">It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that....</h6>
-            <div class="post-meta-data">
-                <div class="post-meta-date">May 20th 2020</div>
-                <a class="post-btn-read-more-link"  href="#">Read more</a>
+            <div>
+                <h2 class="post-title">
+                    <?= $row['title'] ?>
+                </h2>
+                <h6 class="post-short">
+                    <?= substr($row['content'], 0, 250); ?>...
+                </h6>
+                <div class="post-meta-data">
+                    <div class="post-meta-date">
+                        <?= $created_at->format('M d Y') ?>
+                    </div>
+                    <div><a class="post-btn-read-more-link"
+                            href="http://127.0.0.3/src/posts/single.php?postId=<?= $row['post_id'] ?>">Read more</a></div>
+                </div>
             </div>
-        </div>
-    </article>
+        </article>
+    <?php } ?>
 </section>
