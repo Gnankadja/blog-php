@@ -17,7 +17,11 @@ require_once(__DIR__ . '/../config/global.php');
 
     <header>
         <!-- Logo -->
-        <div> <img src=<?= LOGO_URL ?> alt=""></div>
+        <div>
+            <a href="/">
+                <img src=<?= LOGO_URL ?> alt="">
+            </a>
+        </div>
 
         <!-- Search bar -->
         <div class="search-bar-bloc">
@@ -26,7 +30,7 @@ require_once(__DIR__ . '/../config/global.php');
 
         <!-- Navbar -->
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#">Articles</a></li>
         </ul>
 
