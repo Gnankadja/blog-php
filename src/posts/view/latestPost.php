@@ -1,21 +1,33 @@
-<!-- Latest Post Bloc -->
-    <article class="latest-post-wrapper">
-        <!-- Post Detail -->
-        <div>
-            <h2>long established</h2>
-            <h6>It is a long established fact that a reader
-                will be distracted by the readable content of
-                a page when looking at its layout. The point
-                of using Lorem Ipsum is that....
-            </h6>
-            <div>
-                <div class="post-meta-date">May 20th 2020</div>
-                <a class="post-btn-read-more-link" href="#">Read more</a>
-            </div>
-        </div>
+<?php
+require_once(__DIR__ . "/../../../config/database.php");
 
-        <!-- Post Image -->
+// Get featured post
+$query = $pdo->prepare('SELECT * FROM posts, author WHERE posts.author_id = author.id ORDER BY posts.created_at DESC LIMIT 1');
+$query->execute();
+$row = $query->fetch(PDO::FETCH_ASSOC);
+$created_at = new DateTime($row['created_at'], new DateTimeZone('Europe/Paris'));
+?>
+
+<!-- Latest Post Bloc -->
+<article class="latest-post-wrapper">
+    <!-- Post Detail -->
+    <div>
+        <h2>
+            <?= $row['title'] ?>
+        </h2>
+        <h6>
+            <?= substr($row['content'], 0, 250); ?>...
+        </h6>
         <div>
-            <img src="/../src/posts/media/image_1.png" alt="">
+            <div class="post-meta-date">
+                <?= $created_at -> format('M d Y') ?>
+            </div>
+            <a class="post-btn-read-more-link" href="http://127.0.0.3/src/posts/single.php?postId=<?= $row['post_id'] ?>">Read More</a>
         </div>
-    </article>
+    </div>
+
+    <!-- Post Image -->
+    <div>
+        <img src="<?= $row['cover_url'] ?>" alt="">
+    </div>
+</article>
