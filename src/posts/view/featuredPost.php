@@ -1,16 +1,29 @@
+<?php
+require_once(__DIR__ . "/../../../config/database.php");
+
+// Get featured post
+$query = $pdo->prepare('SELECT * FROM posts, author where posts.is_featured = 1 AND posts.author_id = author.id');
+$query->execute();
+$row = $query->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!-- Featured Post View -->
 <article class="featured-post-wrapper">
     <div>
-        <h2 class="featured-post-title">What is Lorem Ipsum?</h2>
-        <h6 class="featured-post-short">It is a long established fact that a reader will be distracted by the readable
-            content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-            normal distribution...</h6>
+        <h2 class="featured-post-title">
+            <?= $row['title'] ?>
+        </h2>
+        <h6 class="featured-post-short">
+            <?= substr($row['content'], 0, 250); ?>...
+        </h6>
         <div class="featured-post-meta-data">
-            <div>May 20</div>
-            <div><a href="#">Read More</a></div>
+            <div>
+                <?= $row['created_at'] ?>
+            </div>
+            <div><a href="http://127.0.0.3/src/posts/single.php?postId=<?= $row['id'] ?>">Read More</a></div>
         </div>
     </div>
-    <div> 
-        <img src="/../src/posts/media/image_8.png" alt="">
+    <div>
+        <img src="<?=$row['cover_url']?>" alt="">
     </div>
 </article>
