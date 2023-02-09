@@ -1,5 +1,17 @@
 # PHP Blog
-A blog build with PHP
+A sample blog built with PHP.
+
+This project is made in order to better understand the basics of the PHP language.
+
+During this project, for example, I learned concepts such as:
+- The basic notions of PHP (Constants, variables, Configuration of a PHP project)
+- Data types
+- Loops and conditions
+- Functions
+- The dates
+- Etc...
+
+# Some captures:
 
 ## Home Page - 1
 ![image](https://user-images.githubusercontent.com/59006429/217832275-fd90142a-1192-49e3-835d-241118f89996.png)
